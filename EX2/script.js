@@ -86,12 +86,5 @@ document.querySelector('#panier').addEventListener('click', event => {
     render();
 });
 
-const ancienPanier = panier;
-const nouveauPanier = incrementer(panier, 1);
-
-console.log(
-    'Référence du produit non modifié :',
-    ancienPanier[1] === nouveauPanier[1]
-);
 
 render();
