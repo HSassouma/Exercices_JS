@@ -61,4 +61,60 @@ function render() {
     document.querySelector('#retablir').disabled = historique.futur.length === 0;
 }
 
+document.querySelector('#form').addEventListener('submit', event => {
+    event.preventDefault();
+
+    const champ = document.querySelector('#texte');
+    const texte = champ.value.trim();
+
+    if (texte === '') return;
+
+    const element = { id: prochainId, texte: texte };
+
+    prochainId++;
+    historique = appliquer(historique, [...historique.present, element]);
+    render();
+
+    champ.value = '';
+});
+
+document.querySelector('#liste').addEventListener('click', event => {
+    const bouton = event.target.closest('button');
+
+    if (!bouton) return;
+
+    const id = Number(bouton.dataset.id);
+    const restants = historique.present.filter(element => element.id !== id);
+
+    historique = appliquer(historique, restants);
+    render();
+});
+
+document.querySelector('#annuler').addEventListener('click', () => {
+    historique = annuler(historique);
+    render();
+});
+
+document.querySelector('#retablir').addEventListener('click', () => {
+    historique = retablir(historique);
+    render();
+});
+
+document.addEventListener('keydown', event => {
+    if (!event.ctrlKey) return;
+    if (event.target.tagName === 'INPUT') return;
+
+    if (event.key === 'z') {
+        event.preventDefault();
+        historique = annuler(historique);
+        render();
+    }
+
+    if (event.key === 'y') {
+        event.preventDefault();
+        historique = retablir(historique);
+        render();
+    }
+});
+
 render();
