@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercice 16 - Codes promo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="carte">
+        <h1>Panier</h1>
+        <p class="intro">Deux codes promo au maximum, insensibles à la casse.</p>
+
+        <ul id="articles"></ul>
+
+        <form id="promo">
+            <input id="code" type="text" placeholder="Code promo" autocomplete="off">
+            <button type="submit">Appliquer</button>
+        </form>
+        <p id="message" class="message"></p>
+
+        <div class="recap">
+            <p class="ligne-recap"><span>Sous-total</span><span id="sous-total"></span></p>
+            <div id="remises"></div>
+            <p class="ligne-recap"><span>Livraison</span><span id="livraison"></span></p>
+            <p class="ligne-recap total"><span>Total</span><span id="total"></span></p>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
