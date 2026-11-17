@@ -20,7 +20,7 @@ function charger() {
 
         return {
             theme: melange.theme === 'sombre' ? 'sombre' : 'clair',
-            taille: Number(melange.taille) || DEFAUTS.taille,
+            taille: Math.min(24, Math.max(12, Number(melange.taille) || DEFAUTS.taille)),
             notifs: typeof melange.notifs === 'boolean' ? melange.notifs : DEFAUTS.notifs
         };
     } catch (erreur) {
@@ -38,3 +38,44 @@ function sauver(preferences) {
 }
 
 let prefs = charger();
+
+const theme = document.querySelector('#theme');
+const taille = document.querySelector('#taille');
+const notifs = document.querySelector('#notifs');
+const valeurTaille = document.querySelector('#valeurTaille');
+const apercu = document.querySelector('#apercu');
+
+function appliquer() {
+    apercu.classList.toggle('sombre', prefs.theme === 'sombre');
+    apercu.style.fontSize = prefs.taille + 'px';
+
+    theme.value = prefs.theme;
+    taille.value = prefs.taille;
+    notifs.checked = prefs.notifs;
+    valeurTaille.textContent = prefs.taille + ' px';
+}
+
+function lireControles() {
+    return {
+        theme: theme.value,
+        taille: Number(taille.value),
+        notifs: notifs.checked
+    };
+}
+
+function enregistrer() {
+    sauver(prefs);
+    appliquer();
+}
+
+document.querySelector('.carte').addEventListener('input', () => {
+    prefs = lireControles();
+    enregistrer();
+});
+
+document.querySelector('#reset').addEventListener('click', () => {
+    prefs = { ...DEFAUTS };
+    enregistrer();
+});
+
+appliquer();
