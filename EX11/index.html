@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercice 11 - Synchroniser plusieurs onglets</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="carte">
+        <h1>Liste de tâches partagée</h1>
+        <p class="intro">Ouvre la page dans deux onglets pour voir la synchronisation.</p>
+
+        <p id="bandeau" class="bandeau cache">Mise à jour depuis un autre onglet</p>
+
+        <form id="form">
+            <input id="texte" type="text" placeholder="Nouvelle tâche" autocomplete="off">
+            <button type="submit">Ajouter</button>
+        </form>
+
+        <ul id="liste"></ul>
+        <p id="vide" class="vide cache">Aucune tâche pour le moment.</p>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
