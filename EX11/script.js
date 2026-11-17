@@ -54,5 +54,23 @@ document.querySelector('#form').addEventListener('submit', event => {
     champ.focus();
 });
 
+let minuteurBandeau;
+
+window.addEventListener('storage', event => {
+    if (event.key !== CLE) return;
+
+    taches = charger();
+    render();
+
+    const bandeau = document.querySelector('#bandeau');
+
+    bandeau.classList.remove('cache');
+    clearTimeout(minuteurBandeau);
+
+    minuteurBandeau = setTimeout(() => {
+        bandeau.classList.add('cache');
+    }, 2000);
+});
+
 taches = charger();
 render();
