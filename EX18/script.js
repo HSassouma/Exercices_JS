@@ -94,4 +94,72 @@ function afficherEtape() {
     }
 }
 
+const CLE = 'assistant:v1';
+
+function sauverSession() {
+    sessionStorage.setItem(CLE, JSON.stringify({ etape: etape, donnees: donnees }));
+}
+
+function chargerSession() {
+    try {
+        const texte = sessionStorage.getItem(CLE);
+
+        if (texte === null) {
+            return;
+        }
+
+        const session = JSON.parse(texte);
+        const numero = Number(session.etape);
+
+        if (numero >= 1 && numero <= TOTAL_ETAPES) {
+            etape = numero;
+        }
+
+        if (session.donnees && typeof session.donnees === 'object') {
+            donnees = session.donnees;
+            remplirChamps(donnees);
+        }
+    } catch (erreur) {
+        console.warn('Session illisible, on repart de zéro.');
+    }
+}
+
+formulaire.addEventListener('submit', event => {
+    event.preventDefault();
+
+    donnees = lireChamps();
+
+    const message = validerEtape(etape);
+
+    if (message !== '') {
+        erreur.textContent = message;
+        return;
+    }
+
+    if (etape < TOTAL_ETAPES) {
+        etape++;
+        sauverSession();
+        afficherEtape();
+        return;
+    }
+
+    const nom = donnees.nom;
+
+    sessionStorage.removeItem(CLE);
+    formulaire.reset();
+    donnees = {};
+    etape = 1;
+
+    afficherEtape();
+    confirmation.textContent = 'Inscription envoyée. Merci ' + nom + ' !';
+});
+
+document.querySelector('#precedent').addEventListener('click', () => {
+    donnees = lireChamps();
+    etape--;
+    sauverSession();
+    afficherEtape();
+});
+
+chargerSession();
 afficherEtape();
