@@ -69,3 +69,118 @@ console.assert(remise(panier, [codes[1]]) === 50, 'INFO50 retire 50 DH sur la ca
 console.assert(total(panier, [codes[1]]) === 515, 'INFO50 doit donner 515 DH');
 console.assert(total(panier, [codes[2]]) === 535, 'LIVRAISON ne change pas le total au-dessus du seuil');
 console.assert(remise(panier, [{ type: 'fixe', valeur: 900, categorie: 'info' }]) === 355, 'Une remise fixe ne dépasse pas le montant de sa catégorie');
+
+let codesAppliques = [];
+
+function formater(montant) {
+    return montant.toLocaleString('fr-FR', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    }) + ' DH';
+}
+
+function trouverCode(texte) {
+    const cherche = texte.trim().toUpperCase();
+
+    return codes.find(code => code.code === cherche);
+}
+
+function afficherMessage(texte, succes) {
+    const message = document.querySelector('#message');
+
+    message.textContent = texte;
+    message.classList.toggle('succes', succes);
+}
+
+function render() {
+    const articles = document.querySelector('#articles');
+    const remises = document.querySelector('#remises');
+    const livraison = fraisLivraison(panier, codesAppliques);
+
+    articles.textContent = '';
+
+    panier.forEach(article => {
+        const li = document.createElement('li');
+        const nom = document.createElement('span');
+        const prix = document.createElement('span');
+
+        nom.textContent = article.nom + ' × ' + article.qte;
+        prix.className = 'prix';
+        prix.textContent = formater(article.prix * article.qte);
+
+        li.append(nom, prix);
+        articles.append(li);
+    });
+
+    remises.textContent = '';
+
+    codesAppliques.forEach(code => {
+        const ligne = document.createElement('p');
+        const texte = document.createElement('span');
+        const bouton = document.createElement('button');
+
+        ligne.className = 'remise';
+        texte.textContent = code.type === 'livraison'
+            ? code.code + ' : livraison offerte'
+            : code.code + ' : -' + formater(montantDuCode(panier, code));
+
+        bouton.type = 'button';
+        bouton.dataset.code = code.code;
+        bouton.textContent = 'Retirer';
+
+        ligne.append(texte, bouton);
+        remises.append(ligne);
+    });
+
+    document.querySelector('#sous-total').textContent = formater(sousTotal(panier));
+    document.querySelector('#livraison').textContent = livraison === 0 ? 'Offerte' : formater(livraison);
+    document.querySelector('#total').textContent = formater(total(panier, codesAppliques));
+}
+
+document.querySelector('#promo').addEventListener('submit', event => {
+    event.preventDefault();
+
+    const champ = document.querySelector('#code');
+    const texte = champ.value.trim();
+
+    if (texte === '') {
+        afficherMessage('Saisis un code promo.', false);
+        return;
+    }
+
+    const code = trouverCode(texte);
+
+    if (code === undefined) {
+        afficherMessage('Code inconnu.', false);
+        return;
+    }
+
+    if (codesAppliques.some(applique => applique.code === code.code)) {
+        afficherMessage('Ce code est déjà appliqué.', false);
+        return;
+    }
+
+    if (codesAppliques.length >= 2) {
+        afficherMessage('Deux codes au maximum.', false);
+        return;
+    }
+
+    codesAppliques = [...codesAppliques, code];
+    champ.value = '';
+
+    afficherMessage('Code ' + code.code + ' appliqué.', true);
+    render();
+});
+
+document.querySelector('#remises').addEventListener('click', event => {
+    const bouton = event.target.closest('button');
+
+    if (!bouton) return;
+
+    codesAppliques = codesAppliques.filter(code => code.code !== bouton.dataset.code);
+
+    afficherMessage('Code retiré.', true);
+    render();
+});
+
+render();
