@@ -1,0 +1,156 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: system-ui, "Segoe UI", Arial, sans-serif;
+    background-color: #f1f5f9;
+    color: #1e293b;
+    padding: 24px;
+}
+
+.carte {
+    background-color: #ffffff;
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 28px;
+    border-radius: 12px;
+    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
+}
+
+h1 {
+    font-size: 22px;
+    margin-bottom: 6px;
+}
+
+.intro {
+    font-size: 14px;
+    color: #64748b;
+    margin-bottom: 20px;
+}
+
+.tableau {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+th {
+    padding: 10px 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #475569;
+    border-bottom: 1px solid #e2e8f0;
+    white-space: nowrap;
+}
+
+td {
+    padding: 6px 6px;
+    border-bottom: 1px solid #f1f5f9;
+    font-size: 14px;
+}
+
+input {
+    width: 100%;
+    padding: 8px 10px;
+    font-size: 14px;
+    font-family: inherit;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    outline: none;
+}
+
+input:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+input.qte,
+input.prix {
+    width: 90px;
+}
+
+input.negatif {
+    border-color: #dc2626;
+    background-color: #fef2f2;
+}
+
+.total-ligne {
+    min-width: 92px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.supprimer {
+    width: 32px;
+    height: 32px;
+    font-size: 16px;
+    line-height: 1;
+    color: #dc2626;
+    background-color: #ffffff;
+    border: 1px solid #fecaca;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.supprimer:hover {
+    background-color: #fee2e2;
+}
+
+#ajouter {
+    margin-top: 12px;
+    padding: 8px 14px;
+    font-size: 14px;
+    font-family: inherit;
+    background-color: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    color: #334155;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+#ajouter:hover {
+    background-color: #e2e8f0;
+}
+
+.totaux {
+    margin-top: 22px;
+    padding-top: 16px;
+    border-top: 1px solid #e2e8f0;
+    font-size: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.totaux span {
+    font-weight: 600;
+}
+
+.ttc {
+    font-size: 17px;
+    font-weight: 700;
+}
+
+@media (max-width: 560px) {
+    body {
+        padding: 12px;
+    }
+
+    .carte {
+        padding: 18px;
+    }
+
+    input.qte,
+    input.prix {
+        width: 72px;
+    }
+}

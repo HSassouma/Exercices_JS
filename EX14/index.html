@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercice 14 - Facture</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="carte">
+        <h1>Facture</h1>
+        <p class="intro">Ajoute des lignes, les totaux se recalculent tout seuls.</p>
+
+        <form id="facture">
+            <div class="tableau">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Désignation</th>
+                            <th>Qté</th>
+                            <th>Prix unitaire</th>
+                            <th>Total</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="lignes"></tbody>
+                </table>
+            </div>
+
+            <button type="button" id="ajouter">+ Ligne</button>
+
+            <div class="totaux">
+                <p>Sous-total : <span id="ht">0,00</span> DH</p>
+                <p>TVA 20 % : <span id="tva">0,00</span> DH</p>
+                <p class="ttc">Total TTC : <span id="ttc">0,00</span> DH</p>
+            </div>
+        </form>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
