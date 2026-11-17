@@ -9,9 +9,9 @@ const chercher = (texte) => {
 function antiRebond(fonction, delai) {
     let minuteur;
 
-    return (...arguments) => {
+    return (...valeurs) => {
         clearTimeout(minuteur);
-        minuteur = setTimeout(() => fonction(...arguments), delai);
+        minuteur = setTimeout(() => fonction(...valeurs), delai);
     };
 }
 
