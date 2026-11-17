@@ -86,6 +86,30 @@ function render() {
         li.append(nom, categorie, prix);
         liste.append(li);
     });
+
+    afficherCompteurs(criteres);
 }
+
+function afficherCompteurs(criteres) {
+    const formulaire = document.querySelector('#filtres');
+    const autresPredicats = construirePredicats({ ...criteres, categories: [] });
+
+    [...formulaire.querySelectorAll('[name="cat"]')].forEach(caseACocher => {
+        const categorie = caseACocher.value;
+
+        const nombre = articles
+            .filter(article => article.categorie === categorie)
+            .filter(article => autresPredicats.every(predicat => predicat(article)))
+            .length;
+
+        formulaire.querySelector('[data-compte="' + categorie + '"]').textContent = nombre;
+    });
+}
+
+document.querySelector('#filtres').addEventListener('input', render);
+
+document.querySelector('#filtres').addEventListener('reset', () => {
+    setTimeout(render, 0);
+});
 
 render();
