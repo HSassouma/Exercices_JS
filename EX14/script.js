@@ -76,5 +76,23 @@ function calculerTotaux() {
     document.querySelector('#ttc').textContent = formater(ht + tva);
 }
 
+document.querySelector('#ajouter').addEventListener('click', () => {
+    document.querySelector('#lignes').append(creerLigne());
+    calculerTotaux();
+});
+
+document.querySelector('#facture').addEventListener('input', () => {
+    calculerTotaux();
+});
+
+document.querySelector('#lignes').addEventListener('click', event => {
+    const bouton = event.target.closest('.supprimer');
+
+    if (!bouton) return;
+
+    bouton.closest('tr').remove();
+    calculerTotaux();
+});
+
 document.querySelector('#lignes').append(creerLigne());
 calculerTotaux();
