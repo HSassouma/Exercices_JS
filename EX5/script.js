@@ -46,8 +46,11 @@ function render() {
     });
 
     document.querySelectorAll('#entetes th').forEach(th => {
-        th.classList.toggle('actif', th.dataset.cle === tri.cle);
-        th.querySelector('.fleche').textContent = th.dataset.cle === tri.cle ? (tri.sens === 1 ? '▲' : '▼') : '';
+        const actif = th.dataset.cle === tri.cle;
+
+        th.classList.toggle('actif', actif);
+        th.querySelector('.fleche').textContent = actif ? (tri.sens === 1 ? '▲' : '▼') : '';
+        th.setAttribute('aria-sort', actif ? (tri.sens === 1 ? 'ascending' : 'descending') : 'none');
     });
 }
 
