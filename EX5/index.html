@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercice 5 - Tableau triable</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="carte">
+        <h1>Classement des équipes</h1>
+        <p class="intro">Clique sur un en-tête pour trier, une deuxième fois pour inverser.</p>
+
+        <div class="tableau">
+            <table>
+                <thead>
+                    <tr id="entetes">
+                        <th data-cle="nom">Nom <span class="fleche"></span></th>
+                        <th data-cle="ville">Ville <span class="fleche"></span></th>
+                        <th data-cle="score">Score <span class="fleche"></span></th>
+                    </tr>
+                </thead>
+                <tbody id="corps"></tbody>
+            </table>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

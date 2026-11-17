@@ -1,0 +1,91 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: system-ui, "Segoe UI", Arial, sans-serif;
+    background-color: #f1f5f9;
+    color: #1e293b;
+    padding: 24px;
+}
+
+.carte {
+    background-color: #ffffff;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 28px;
+    border-radius: 12px;
+    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
+}
+
+h1 {
+    font-size: 22px;
+    margin-bottom: 6px;
+}
+
+.intro {
+    font-size: 14px;
+    color: #64748b;
+    margin-bottom: 20px;
+}
+
+.tableau {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+th {
+    padding: 12px 10px;
+    font-size: 14px;
+    color: #334155;
+    background-color: #f8fafc;
+    border-bottom: 2px solid #e2e8f0;
+    cursor: pointer;
+    user-select: none;
+}
+
+th:hover {
+    background-color: #e2e8f0;
+}
+
+th.actif {
+    color: #2563eb;
+    border-bottom-color: #2563eb;
+}
+
+.fleche {
+    font-size: 12px;
+}
+
+td {
+    padding: 12px 10px;
+    font-size: 14px;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+tbody tr:hover {
+    background-color: #f8fafc;
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 12px;
+    }
+
+    .carte {
+        padding: 18px;
+    }
+
+    th,
+    td {
+        padding: 10px 6px;
+        font-size: 13px;
+    }
+}
