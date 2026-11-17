@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercice 13 - Annuler et rétablir</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="carte">
+        <h1>Liste avec historique</h1>
+        <p class="intro">Ctrl + Z pour annuler, Ctrl + Y pour rétablir.</p>
+
+        <form id="form">
+            <input id="texte" type="text" placeholder="Nouvel élément" autocomplete="off">
+            <button type="submit">Ajouter</button>
+        </form>
+
+        <div class="outils">
+            <button id="annuler" type="button" disabled>Annuler</button>
+            <button id="retablir" type="button" disabled>Rétablir</button>
+        </div>
+
+        <ul id="liste"></ul>
+        <p id="vide" class="vide">La liste est vide.</p>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
