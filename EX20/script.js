@@ -43,7 +43,7 @@ function afficher(notification) {
     const element = document.createElement('div');
     const texte = document.createElement('span');
     const bouton = document.createElement('button');
-    const configuration = CONFIG[notification.type];
+    const configuration = CONFIG[notification.type] || CONFIG.info;
 
     element.className = 'toast';
     element.dataset.id = notification.id;
@@ -56,6 +56,15 @@ function afficher(notification) {
 
     element.append(texte, bouton);
     zone.append(element);
+
+    element.addEventListener('mouseenter', () => {
+        clearTimeout(notification.minuteur);
+        notification.reste = Math.max(0, notification.reste - (Date.now() - notification.debut));
+    });
+
+    element.addEventListener('mouseleave', () => {
+        demarrer(notification);
+    });
 
     notification.element = element;
     visibles.push(notification);
@@ -92,3 +101,21 @@ function notifier(message, type, duree = 3000) {
 
     afficher(notification);
 }
+
+document.querySelector('#toasts').addEventListener('click', event => {
+    const bouton = event.target.closest('button');
+
+    if (!bouton) return;
+
+    fermer(Number(bouton.closest('.toast').dataset.id));
+});
+
+document.querySelector('.boutons').addEventListener('click', event => {
+    const bouton = event.target.closest('button');
+
+    if (!bouton) return;
+
+    notifier('Notification de type ' + bouton.dataset.type, bouton.dataset.type);
+});
+
+window.notifier = notifier;
