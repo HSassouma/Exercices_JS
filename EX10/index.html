@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercice 10 - Préférences persistées</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="carte">
+        <h1>Préférences</h1>
+        <p class="intro">Les réglages sont enregistrés dans le navigateur.</p>
+
+        <div class="reglage">
+            <label for="theme">Thème</label>
+            <select id="theme">
+                <option value="clair">Clair</option>
+                <option value="sombre">Sombre</option>
+            </select>
+        </div>
+
+        <div class="reglage">
+            <label for="taille">Taille du texte <span id="valeurTaille" class="valeur"></span></label>
+            <input id="taille" type="range" min="12" max="24">
+        </div>
+
+        <div class="reglage">
+            <label class="case">
+                <input id="notifs" type="checkbox">
+                Notifications
+            </label>
+        </div>
+
+        <button id="reset" type="button">Réinitialiser</button>
+
+        <p id="apercu" class="apercu">Texte d'aperçu</p>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
