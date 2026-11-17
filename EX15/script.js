@@ -70,7 +70,9 @@ function render() {
             suivant.disabled = position === STATUTS.length - 1;
             suivant.classList.toggle('masquee', position === STATUTS.length - 1);
 
-            if (statut === 'encours' && compteurs.encours >= LIMITE_ENCOURS) {
+            const suivante = STATUTS[position + 1];
+
+            if (suivante === 'encours' && compteurs.encours >= LIMITE_ENCOURS) {
                 suivant.disabled = true;
             }
 
@@ -86,5 +88,58 @@ function render() {
     });
 }
 
+function deplacer(id, pas) {
+    return cartes.map(carte => {
+        if (carte.id !== id) {
+            return carte;
+        }
+
+        const position = STATUTS.indexOf(carte.statut);
+        const cible = STATUTS[position + pas];
+
+        if (cible === undefined) {
+            return carte;
+        }
+
+        if (cible === 'encours' && compterParStatut().encours >= LIMITE_ENCOURS) {
+            return carte;
+        }
+
+        return { ...carte, statut: cible };
+    });
+}
+
+document.querySelector('#form').addEventListener('submit', event => {
+    event.preventDefault();
+
+    const champ = document.querySelector('#titre');
+    const titre = champ.value.trim();
+
+    if (titre === '') return;
+
+    cartes = [...cartes, { id: prochainId, titre: titre, statut: STATUTS[0] }];
+    prochainId++;
+
+    sauver();
+    render();
+
+    champ.value = '';
+});
+
+document.querySelector('#tableau').addEventListener('click', event => {
+    const bouton = event.target.closest('button');
+
+    if (!bouton || bouton.disabled) return;
+
+    const id = Number(bouton.dataset.id);
+    const pas = bouton.dataset.action === 'avancer' ? 1 : -1;
+
+    cartes = deplacer(id, pas);
+
+    sauver();
+    render();
+});
+
 cartes = charger();
+prochainId = cartes.reduce((maximum, carte) => Math.max(maximum, carte.id), 0) + 1;
 render();
