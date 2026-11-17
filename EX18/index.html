@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercice 18 - Inscription en 3 étapes</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="carte">
+        <h1>Inscription</h1>
+        <p class="intro">Les saisies sont gardées pendant la session du navigateur.</p>
+
+        <div class="barre">
+            <div id="progression"></div>
+        </div>
+
+        <form id="assistant" novalidate>
+            <fieldset data-etape="1">
+                <legend>Vos coordonnées</legend>
+                <label for="nom">Nom complet</label>
+                <input id="nom" name="nom" type="text" placeholder="Nom complet" autocomplete="off">
+
+                <label for="email">Email</label>
+                <input id="email" name="email" type="text" placeholder="nom@domaine.com" autocomplete="off">
+            </fieldset>
+
+            <fieldset data-etape="2" class="cache">
+                <legend>Votre formation</legend>
+                <label for="formation">Formation</label>
+                <select id="formation" name="formation">
+                    <option value="">Choisir une formation</option>
+                    <option value="Web">Web</option>
+                    <option value="Data">Data</option>
+                </select>
+
+                <label for="ville">Ville</label>
+                <input id="ville" name="ville" type="text" placeholder="Ville" autocomplete="off">
+            </fieldset>
+
+            <fieldset data-etape="3" class="cache">
+                <legend>Récapitulatif</legend>
+                <div id="recap"></div>
+                <label class="case"><input type="checkbox" name="cgu"> J'accepte le règlement</label>
+            </fieldset>
+
+            <p id="erreur" class="erreur"></p>
+
+            <div class="navigation">
+                <button type="button" id="precedent" class="secondaire cache">Précédent</button>
+                <button type="submit" id="suivant">Suivant</button>
+            </div>
+        </form>
+
+        <p id="confirmation" class="confirmation"></p>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
