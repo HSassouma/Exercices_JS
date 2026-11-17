@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercice 7 - Validation de formulaire</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="carte">
+        <h1>Créer un compte</h1>
+        <p class="intro">Chaque champ est vérifié dès la saisie.</p>
+
+        <form id="inscription" novalidate>
+            <label for="email">Email</label>
+            <input id="email" name="email" type="text" placeholder="nom@domaine.com" autocomplete="off">
+            <p class="erreur" data-erreur="email"></p>
+
+            <label for="telephone">Téléphone</label>
+            <input id="telephone" name="telephone" type="text" placeholder="06 12 34 56 78" autocomplete="off">
+            <p class="erreur" data-erreur="telephone"></p>
+
+            <label for="motdepasse">Mot de passe</label>
+            <input id="motdepasse" name="motdepasse" type="password" placeholder="8 caractères minimum">
+            <p class="erreur" data-erreur="motdepasse"></p>
+
+            <button type="submit" disabled>Créer le compte</button>
+        </form>
+
+        <p id="succes" class="succes"></p>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
