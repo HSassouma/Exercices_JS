@@ -30,6 +30,12 @@ function render() {
 
     graphique.textContent = '';
 
+    if (paires.length === 0) {
+        graphique.textContent = 'Aucune dépense à afficher.';
+        total.textContent = 'Total : 0 DH';
+        return;
+    }
+
     paires.forEach(([categorie, montant]) => {
         const ligne = document.createElement('div');
         const nom = document.createElement('span');
