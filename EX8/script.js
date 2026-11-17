@@ -11,9 +11,22 @@ function nombreDePages(donnees, parPage) {
     return Math.ceil(donnees.length / parPage);
 }
 
+function creerBouton(texte, numero, desactive) {
+    const bouton = document.createElement('button');
+
+    bouton.type = 'button';
+    bouton.textContent = texte;
+    bouton.dataset.page = numero;
+    bouton.disabled = desactive;
+    bouton.classList.toggle('active', numero === page);
+
+    return bouton;
+}
+
 function render() {
     const plage = document.querySelector('#plage');
     const liste = document.querySelector('#liste');
+    const pages = document.querySelector('#pages');
 
     const total = nombreDePages(produits, PAR_PAGE);
     page = Math.min(Math.max(page, 1), total);
@@ -31,6 +44,25 @@ function render() {
     });
 
     plage.textContent = 'Éléments ' + debut + '-' + fin + ' sur ' + produits.length;
+
+    pages.textContent = '';
+    pages.append(creerBouton('Précédent', page - 1, page === 1));
+
+    for (let numero = 1; numero <= total; numero++) {
+        pages.append(creerBouton(numero, numero, false));
+    }
+
+    pages.append(creerBouton('Suivant', page + 1, page === total));
 }
+
+document.querySelector('#pages').addEventListener('click', event => {
+    const bouton = event.target.closest('button');
+
+    if (!bouton || bouton.disabled) return;
+
+    page = Number(bouton.dataset.page);
+
+    render();
+});
 
 render();
