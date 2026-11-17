@@ -42,6 +42,27 @@ const formulaire = document.querySelector('#inscription');
 const bouton = formulaire.querySelector('button');
 const succes = document.querySelector('#succes');
 
+function afficherChamp(nom) {
+    const champ = formulaire.elements[nom];
+    const paragraphe = formulaire.querySelector('[data-erreur="' + nom + '"]');
+    const message = valider(nom, champ.value);
+
+    paragraphe.textContent = message;
+    champ.classList.toggle('invalide', message !== '');
+    champ.classList.toggle('valide', message === '' && champ.value.trim() !== '');
+
+    bouton.disabled = !champsValides(formulaire);
+}
+
+formulaire.addEventListener('input', event => {
+    const nom = event.target.name;
+
+    if (!regles[nom]) return;
+
+    succes.textContent = '';
+    afficherChamp(nom);
+});
+
 formulaire.addEventListener('submit', event => {
     event.preventDefault();
 
