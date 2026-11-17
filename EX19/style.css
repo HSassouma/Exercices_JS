@@ -1,0 +1,297 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: system-ui, "Segoe UI", Arial, sans-serif;
+    background-color: #f1f5f9;
+    color: #1e293b;
+    padding: 24px;
+}
+
+.carte {
+    background-color: #ffffff;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 28px;
+    border-radius: 12px;
+    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
+    position: relative;
+}
+
+h1 {
+    font-size: 22px;
+    margin-bottom: 6px;
+}
+
+.intro {
+    font-size: 14px;
+    color: #64748b;
+    margin-bottom: 20px;
+}
+
+#form {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr auto;
+    gap: 8px;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 14px;
+    font-family: inherit;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    outline: none;
+    background-color: #ffffff;
+}
+
+input:focus,
+select:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+#form button {
+    padding: 10px 18px;
+    font-size: 14px;
+    font-family: inherit;
+    font-weight: 600;
+    color: #ffffff;
+    background-color: #2563eb;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+    white-space: nowrap;
+}
+
+#form button:hover {
+    background-color: #1d4ed8;
+}
+
+.erreur {
+    min-height: 20px;
+    font-size: 13px;
+    color: #dc2626;
+    margin: 6px 0 0;
+}
+
+.outils {
+    display: flex;
+    gap: 8px;
+    margin: 8px 0 16px;
+}
+
+.outils select {
+    width: 150px;
+}
+
+.stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.stat {
+    flex: 1;
+    min-width: 104px;
+    padding: 10px 12px;
+    text-align: left;
+    font-family: inherit;
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.stat:hover {
+    background-color: #e2e8f0;
+}
+
+.stat.active {
+    border-color: #2563eb;
+    background-color: #eff6ff;
+}
+
+.stat .valeur {
+    display: block;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.stat .libelle {
+    font-size: 12px;
+    color: #64748b;
+}
+
+.compte {
+    font-size: 13px;
+    color: #64748b;
+    margin-bottom: 10px;
+}
+
+#liste {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#liste li {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px 14px;
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+}
+
+.infos {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.infos .entreprise {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.infos .poste,
+.infos .contact {
+    font-size: 13px;
+    color: #64748b;
+}
+
+.badge {
+    font-size: 12px;
+    font-weight: 600;
+    border-radius: 20px;
+    padding: 3px 10px;
+    white-space: nowrap;
+}
+
+.badge.envoyee {
+    background-color: #e0f2fe;
+    color: #0369a1;
+}
+
+.badge.entretien {
+    background-color: #fef9c3;
+    color: #a16207;
+}
+
+.badge.offre {
+    background-color: #dcfce7;
+    color: #15803d;
+}
+
+.badge.refusee {
+    background-color: #fee2e2;
+    color: #b91c1c;
+}
+
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.actions button {
+    padding: 6px 10px;
+    font-size: 12px;
+    font-family: inherit;
+    background-color: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    color: #334155;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.actions button:hover {
+    background-color: #e2e8f0;
+}
+
+.actions button.supprimer {
+    color: #b91c1c;
+    border-color: #fecaca;
+}
+
+.actions button.supprimer:hover {
+    background-color: #fee2e2;
+}
+
+.vide {
+    font-size: 14px;
+    color: #64748b;
+}
+
+.cache {
+    display: none;
+}
+
+.annulation {
+    position: sticky;
+    bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 16px;
+    padding: 10px 14px;
+    font-size: 13px;
+    background-color: #1e293b;
+    color: #f8fafc;
+    border-radius: 8px;
+}
+
+.annulation.cache {
+    display: none;
+}
+
+.annulation button {
+    padding: 6px 12px;
+    font-size: 13px;
+    font-family: inherit;
+    font-weight: 600;
+    color: #1e293b;
+    background-color: #f8fafc;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+@media (max-width: 720px) {
+    #form {
+        grid-template-columns: 1fr;
+    }
+
+    .outils {
+        flex-direction: column;
+    }
+
+    .outils select {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 12px;
+    }
+
+    .carte {
+        padding: 18px;
+    }
+}

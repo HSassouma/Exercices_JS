@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercice 19 - Suivi de candidatures</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="carte">
+        <h1>Mes candidatures de stage</h1>
+        <p class="intro">Ajoute une candidature, fais-la avancer et garde un œil sur ton taux de réponse.</p>
+
+        <form id="form">
+            <input name="entreprise" type="text" placeholder="Entreprise" autocomplete="off">
+            <input name="poste" type="text" placeholder="Poste" autocomplete="off">
+            <input name="contact" type="text" placeholder="Email du contact" autocomplete="off">
+            <button type="submit">Ajouter</button>
+        </form>
+        <p id="erreur" class="erreur"></p>
+
+        <div class="outils">
+            <input id="recherche" type="text" placeholder="Rechercher" autocomplete="off">
+            <select id="tri">
+                <option value="date">Récentes</option>
+                <option value="entreprise">A → Z</option>
+            </select>
+        </div>
+
+        <div id="stats" class="stats"></div>
+
+        <p id="compte" class="compte"></p>
+        <ul id="liste"></ul>
+        <p id="vide" class="vide">Aucune candidature pour le moment.</p>
+
+        <div id="annulation" class="annulation cache">
+            <span id="annulation-texte"></span>
+            <button type="button" id="annuler-suppression">Annuler</button>
+        </div>
+    </main>
+
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>
