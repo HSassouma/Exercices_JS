@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercice 17 - Filtres combinés</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="carte">
+        <h1>Catalogue</h1>
+        <p class="intro">Les filtres se combinent : chaque critère ajoute une condition.</p>
+
+        <div class="contenu">
+            <form id="filtres">
+                <input id="recherche" name="q" type="text" placeholder="Rechercher" autocomplete="off">
+
+                <fieldset>
+                    <legend>Catégories</legend>
+                    <label><input type="checkbox" name="cat" value="livre"> Livres <span class="compte" data-compte="livre"></span></label>
+                    <label><input type="checkbox" name="cat" value="jeu"> Jeux <span class="compte" data-compte="jeu"></span></label>
+                    <label><input type="checkbox" name="cat" value="musique"> Musique <span class="compte" data-compte="musique"></span></label>
+                </fieldset>
+
+                <label class="prix">Prix max <input name="max" type="number" min="0" placeholder="0"></label>
+
+                <label class="case"><input type="checkbox" name="stock"> En stock uniquement</label>
+
+                <button type="reset">Effacer</button>
+            </form>
+
+            <section class="resultats">
+                <p id="compte" class="compte-global"></p>
+                <ul id="resultats"></ul>
+            </section>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
